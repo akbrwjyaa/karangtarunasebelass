@@ -11,6 +11,7 @@
       background: #0f172a;
       color: #e2e8f0;
       text-align: center;
+      padding-bottom: 100px; /* ruang agar tombol tidak menutupi */
     }
 
     h1 {
@@ -110,18 +111,18 @@
 
     .sponsor-container {
       display: none;
-      margin-top: -10px;
-      padding-bottom: 30px;
+      margin-top: 0;
+      padding-top: 10px;
     }
 
-    .sponsor-title {
+    .sponsor-title, .media-title {
       font-size: 0.9rem;
       color: #94a3b8;
       margin: 10px 0 5px;
       opacity: 0.6;
     }
 
-    .sponsor-logos {
+    .sponsor-logos, .media-logos {
       display: flex;
       justify-content: center;
       gap: 20px;
@@ -129,13 +130,13 @@
       padding: 10px 0;
     }
 
-    .sponsor-logos img {
+    .sponsor-logos img, .media-logos img {
       height: 35px;
       opacity: 0.4;
       transition: opacity 0.3s ease;
     }
 
-    .sponsor-logos img:hover {
+    .sponsor-logos img:hover, .media-logos img:hover {
       opacity: 0.8;
     }
 
@@ -277,19 +278,25 @@
     </div>
   </div>
 
-  <!-- Sponsor Section -->
+  <!-- Sponsor dan Media Partner -->
   <div class="sponsor-container" id="sponsor2024">
     <div class="sponsor-title">SPONSOR</div>
     <div class="sponsor-logos">
       <a href="#"><img src="img/1.png" alt="Sponsor 1"></a>
       <a href="#"><img src="img/2.png" alt="Sponsor 2"></a>
       <a href="#"><img src="img/3.png" alt="Sponsor 3"></a>
-      <a href="#"><img src="img/4.png" alt="Sponsor 3"></a>
-      <a href="#"><img src="img/5.png" alt="Sponsor 3"></a>
+      <a href="#"><img src="img/4.png" alt="Sponsor 4"></a>
+      <a href="#"><img src="img/1.png" alt="Sponsor 5"></a>
+    </div>
+
+    <div class="media-title">MEDIA PARTNER</div>
+    <div class="media-logos">
+      <a href="#"><img src="img/1.png" alt="Media Partner 1"></a>
+      <a href="#"><img src="img/2.png" alt="Media Partner 2"></a>
     </div>
   </div>
-  
-  <!-- Tombol kembali floating -->
+
+  <!-- Tombol kembali -->
   <a href="index.html" class="floating-back-link">
     <svg viewBox="0 0 24 24">
       <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
