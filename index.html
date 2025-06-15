@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Linktree Sosial</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #f1f5f9;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .profile {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .profile img {
+      width: 100px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .profile h2 {
+      font-size: 1.5rem;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 350px;
+      margin: 0 auto 30px auto;
+    }
+
+    .link-card {
+      background: rgba(255,255,255,0.05);
+      padding: 14px 20px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      transition: transform 0.2s ease, background 0.2s ease;
+      color: #f8fafc;
+      text-decoration: none;
+    }
+
+    .link-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .link-card i {
+      font-size: 1.4rem;
+    }
+
+    .footer-icons {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+      gap: 40px;
+    }
+
+    .footer-icon {
+      text-decoration: none;
+      color: #cbd5e1;
+      font-size: 0.8rem;
+      transition: transform 0.2s, color 0.2s;
+    }
+
+    .footer-icon i {
+      font-size: 1.8rem;
+    }
+
+    .footer-icon:hover {
+      transform: scale(1.2);
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="profile">
+    <img src="Logo.png" alt="Profile" />
+    <h2>Kartar Sebelas</h2>
+  </div>
+
+  <!-- Navigasi -->
+  <div class="links">
+    <a href="tentang.html" class="link-card">
+      <i class="fas fa-user-circle"></i>
+      <span>Tentang Kami</span>
+    </a>
+    <a href="galeri.html" class="link-card">
+      <i class="fas fa-images"></i>
+      <span>Galeri Kegiatan</span>
+    </a>
+    <a href="https://www.google.com/maps/place/Lapangan+RT+11+RW+05+Kebon+Pala,+Jl.+Usman+Harun+No.18+3,+RT.3%2FRW.5,+Kb.+Pala,+Kec.+Makasar,+Kota+Jakarta+Timur,+Daerah+Khusus+Ibukota+Jakarta+13650/@-6.2531164,106.8741675,17z/data=!4m6!3m5!1s0x2e69f3b226b5121f:0x968b4e3162c7c733!8m2!3d-6.2531164!4d106.8741675!16s%2Fg%2F11g1lh045m?hl=id&gl=id&g_ep=Eg1tbF8yMDI1MDYwNF8wIOC7DCoASAJQAQ%3D%3D" target="_blank" class="link-card">
+      <i class="fas fa-map-marker-alt"></i>
+      <span>Lihat Lokasi</span>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-icons">
+    <a href="https://www.instagram.com/kartar_rt011?igsh=MWFweWxqczJiMXVhYw==" target="_blank" class="footer-icon">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.tiktok.com/@kartar.rt.11?_t=ZS-8xDZrx0s80n&_r=1" target="_blank" class="footer-icon">
+      <i class="fab fa-tiktok"></i>
+    </a>
+    <a href="mailto:kartarrt1105@gmail.com?subject=Informasi%20Karang%20Taruna&body=Halo%2C%20saya%20ingin%20bertanya%20tentang%20kegiatan%20Karang%20Taruna." target="_blank" class="footer-icon">
+      <i class="fas fa-envelope"></i>
+    </a>
+  </div>
+
+</body>
+</html>

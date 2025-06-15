@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galeri Kegiatan</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      text-align: center;
+    }
+
+    h1 {
+      padding-top: 40px;
+      font-size: 2.5rem;
+      color: #38bdf8;
+    }
+
+    .filter-buttons {
+      margin: 30px auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .filter-buttons button {
+      background: #1e293b;
+      color: #38bdf8;
+      border: 2px solid #38bdf8;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .filter-buttons button:hover,
+    .filter-buttons button.active {
+      background: #38bdf8;
+      color: #0f172a;
+      box-shadow: 0 0 15px #38bdf8;
+    }
+
+    .gallery {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      display: none;
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+
+    .card.show {
+      display: block;
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: 0.4s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.08);
+      filter: brightness(0.8);
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    .sponsor-container {
+      display: none;
+      margin-top: -10px;
+      padding-bottom: 30px;
+    }
+
+    .sponsor-title {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin: 10px 0 5px;
+      opacity: 0.6;
+    }
+
+    .sponsor-logos {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 10px 0;
+    }
+
+    .sponsor-logos img {
+      height: 35px;
+      opacity: 0.4;
+      transition: opacity 0.3s ease;
+    }
+
+    .sponsor-logos img:hover {
+      opacity: 0.8;
+    }
+
+    /* Tombol kembali mengambang di bawah tengah */
+    .floating-back-link {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: #0f172a;
+      padding: 12px 22px;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95rem;
+      box-shadow: 0 8px 25px rgba(56, 189, 248, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .floating-back-link:hover {
+      transform: translateX(-50%) scale(1.05);
+      box-shadow: 0 10px 30px rgba(14, 165, 233, 0.5);
+    }
+
+    .floating-back-link svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    @media (max-width: 500px) {
+      .floating-back-link {
+        font-size: 0.8rem;
+        padding: 10px 18px;
+      }
+
+      .floating-back-link svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Galeri Kegiatan</h1>
+
+  <div class="filter-buttons">
+    <button class="filter-btn" data-year="2023">2023</button>
+    <button class="filter-btn" data-year="2024">2024</button>
+    <button class="filter-btn" data-year="2025">2025</button>
+  </div>
+
+  <div class="gallery">
+    <!-- Galeri 2023 -->
+    <div class="card" data-year="2023">
+      <img src="https://source.unsplash.com/800x600/?team,2023" alt="Kegiatan 2023" />
+      <div class="caption">Pelatihan Wirausaha 2023</div>
+    </div>
+    <div class="card" data-year="2023">
+      <img src="https://source.unsplash.com/800x600/?community,event" alt="Kegiatan 2023" />
+      <div class="caption">Lomba Lingkungan 2023</div>
+    </div>
+
+    <!-- Galeri 2024 -->
+    <div class="card" data-year="2024">
+      <img src="https://source.unsplash.com/800x600/?volunteer" alt="Kegiatan 2024" />
+      <div class="caption">Kegiatan Sosial 2024</div>
+    </div>
+    <div class="card" data-year="2024">
+      <img src="https://source.unsplash.com/800x600/?sports,team" alt="Kegiatan 2024" />
+      <div class="caption">Turnamen Futsal 2024</div>
+    </div>
+
+    <!-- Galeri 2025 -->
+    <div class="card" data-year="2025">
+      <img src="https://source.unsplash.com/800x600/?education,youth" alt="Kegiatan 2025" />
+      <div class="caption">Seminar Pemuda 2025</div>
+    </div>
+    <div class="card" data-year="2025">
+      <img src="https://source.unsplash.com/800x600/?tree,planting" alt="Kegiatan 2025" />
+      <div class="caption">Penghijauan Desa 2025</div>
+    </div>
+  </div>
+
+  <!-- Sponsor Section (khusus 2024) -->
+  <div class="sponsor-container" id="sponsor2024">
+    <div class="sponsor-title">SPONSOR</div>
+    <div class="sponsor-logos">
+      <a href="#"><img src="https://via.placeholder.com/100x40?text=Sponsor+1" alt="Sponsor 1"></a>
+      <a href="#"><img src="https://via.placeholder.com/100x40?text=Sponsor+2" alt="Sponsor 2"></a>
+      <a href="#"><img src="https://via.placeholder.com/100x40?text=Sponsor+3" alt="Sponsor 3"></a>
+    </div>
+  </div>
+
+  <!-- Tombol kembali floating -->
+  <a href="index.html" class="floating-back-link">
+    <svg viewBox="0 0 24 24">
+      <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Kembali ke Beranda
+  </a>
+
+  <script>
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.card');
+    const sponsor2024 = document.getElementById('sponsor2024');
+
+    function showCards(year) {
+      cards.forEach(card => {
+        card.classList.remove('show');
+        card.style.display = 'none';
+        if (card.dataset.year === year) {
+          card.style.display = 'block';
+          setTimeout(() => card.classList.add('show'), 10);
+        }
+      });
+
+      sponsor2024.style.display = (year === "2024") ? 'block' : 'none';
+    }
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        const year = button.dataset.year;
+        showCards(year);
+      });
+    });
+  </script>
+</body>
+</html>
