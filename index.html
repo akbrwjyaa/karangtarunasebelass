@@ -1,18 +1,48 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+ <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="shortcut icon" type="image/png" href="img/Logo.png" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Linktree Sosial</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * {margin: 0; padding: 0; box-sizing: border-box;}
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #0f172a, #1e293b);
       color: #f1f5f9;
       min-height: 100vh;
       padding: 40px 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    canvas#bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .profile {
@@ -51,6 +81,7 @@
       transition: transform 0.2s ease, background 0.2s ease;
       color: #f8fafc;
       text-decoration: none;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
     .link-card:hover {
@@ -60,6 +91,11 @@
 
     .link-card i {
       font-size: 1.4rem;
+      transition: transform 0.3s ease;
+    }
+
+    .link-card:hover i {
+      transform: rotate(10deg) scale(1.1);
     }
 
     .footer-icons {
@@ -84,17 +120,41 @@
       transform: scale(1.2);
       color: #38bdf8;
     }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+
+    /* Responsif */
+    @media (max-width: 600px) {
+      .link-card {
+        font-size: 0.95rem;
+        padding: 12px 16px;
+      }
+
+      .link-card i {
+        font-size: 1.2rem;
+      }
+
+      .profile h2 {
+        font-size: 1.2rem;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <div class="profile">
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="profile fade-in">
     <img src="img/Logo.png" alt="Profile" />
     <h2>Kartar Sebelas</h2>
   </div>
 
-  <!-- Navigasi -->
-  <div class="links">
+  <div class="links fade-in">
     <a href="tentang.html" class="link-card">
       <i class="fas fa-user-circle"></i>
       <span>Tentang Kami</span>
@@ -109,18 +169,61 @@
     </a>
   </div>
 
-  <!-- Footer -->
-  <div class="footer-icons">
-    <a href="https://www.instagram.com/kartar_rt011?igsh=MWFweWxqczJiMXVhYw==" target="_blank" class="footer-icon">
+  <div class="footer-icons fade-in">
+    <a href="https://www.instagram.com/kartar_rt011" target="_blank" class="footer-icon">
       <i class="fab fa-instagram"></i>
     </a>
-    <a href="https://www.tiktok.com/@kartar.rt.11?_t=ZS-8xDZrx0s80n&_r=1" target="_blank" class="footer-icon">
+    <a href="https://www.tiktok.com/@kartar.rt.11" target="_blank" class="footer-icon">
       <i class="fab fa-tiktok"></i>
     </a>
     <a href="mailto:kartarrt1105@gmail.com?subject=Informasi%20Karang%20Taruna&body=Halo%2C%20saya%20ingin%20bertanya%20tentang%20kegiatan%20Karang%20Taruna." target="_blank" class="footer-icon">
       <i class="fas fa-envelope"></i>
     </a>
   </div>
+
+  <footer class="fade-in">
+    &copy; 2025 Karang Taruna RT 011. All rights reserved.
+  </footer>
+
+  <!-- JS Partikel Galaxy / Paralax -->
+  <script>
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+
+    const stars = [];
+    for (let i = 0; i < 100; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5 + 0.5,
+        dx: (Math.random() - 0.5) * 0.2,
+        dy: (Math.random() - 0.5) * 0.2
+      });
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#ffffff';
+      stars.forEach(s => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+        s.x += s.dx;
+        s.y += s.dy;
+        if (s.x < 0 || s.x > canvas.width) s.dx *= -1;
+        if (s.y < 0 || s.y > canvas.height) s.dy *= -1;
+      });
+      requestAnimationFrame(drawStars);
+    }
+    drawStars();
+
+    window.addEventListener('resize', () => {
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+    });
+  </script>
 
 </body>
 </html>

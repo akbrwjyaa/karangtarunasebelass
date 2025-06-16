@@ -24,12 +24,36 @@
       color: var(--text);
       text-align: center;
       padding-bottom: 120px;
+      overflow-x: hidden;
+    }
+
+    /* Canvas animasi bintang */
+    canvas#bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    /* Animasi fade-in judul */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     h1 {
       padding: 40px 20px 0;
       font-size: 2.5rem;
       color: var(--primary);
+      animation: fadeInUp 1s ease-out both;
+      position: relative;
+      z-index: 1;
     }
 
     .filter-buttons {
@@ -39,6 +63,8 @@
       flex-wrap: wrap;
       gap: 15px;
       padding: 0 15px;
+      z-index: 1;
+      position: relative;
     }
 
     .filter-buttons button {
@@ -183,6 +209,10 @@
     }
 
     @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
       .card img {
         height: 180px;
       }
@@ -193,10 +223,6 @@
     }
 
     @media (max-width: 480px) {
-      h1 {
-        font-size: 2rem;
-      }
-
       .filter-buttons button {
         padding: 8px 16px;
         font-size: 0.85rem;
@@ -225,6 +251,10 @@
 </head>
 <body>
 
+  <!-- Canvas untuk animasi bintang -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Judul Galeri -->
   <h1>Galeri Kegiatan</h1>
 
   <!-- Tombol Filter -->
@@ -336,10 +366,9 @@
       <div class="date-tag">19 April 2025</div>
       <div class="caption">Jalan-Jalan Anggota Kartar & Ibu PKK</div>
     </div>
-  </div>
-
-
-  <!-- Sponsor -->
+    </div>
+    
+      <!-- Sponsor -->
   <div class="sponsor-container" id="sponsor2024">
     <div class="sponsor-title">SPONSOR</div>
     <div class="sponsor-logos">
@@ -365,7 +394,9 @@
     Kembali ke Beranda
   </a>
 
+  <!-- Script animasi bintang -->
   <script>
+    // Filter galeri
     const buttons = document.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('.card');
     const sponsor2024 = document.getElementById('sponsor2024');
@@ -389,6 +420,45 @@
         const year = button.dataset.year;
         showCards(year);
       });
+    });
+
+    // Background animasi bintang
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+
+    const stars = [];
+    for (let i = 0; i < 100; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5 + 0.5,
+        dx: (Math.random() - 0.5) * 0.2,
+        dy: (Math.random() - 0.5) * 0.2
+      });
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#ffffff';
+      stars.forEach(s => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+        s.x += s.dx;
+        s.y += s.dy;
+        if (s.x < 0 || s.x > canvas.width) s.dx *= -1;
+        if (s.y < 0 || s.y > canvas.height) s.dy *= -1;
+      });
+      requestAnimationFrame(drawStars);
+    }
+
+    drawStars();
+
+    window.addEventListener('resize', () => {
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
     });
   </script>
 </body>
