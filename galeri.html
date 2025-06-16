@@ -5,33 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Galeri Kegiatan</title>
   <style>
+    :root {
+      --primary: #38bdf8;
+      --bg: #0f172a;
+      --text: #e2e8f0;
+      --card-bg: #1e293b;
+      --muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #0f172a;
-      color: #e2e8f0;
+      background: var(--bg);
+      color: var(--text);
       text-align: center;
-      padding-bottom: 100px; /* ruang agar tombol tidak menutupi */
+      padding-bottom: 120px;
     }
 
     h1 {
-      padding-top: 40px;
+      padding: 40px 20px 0;
       font-size: 2.5rem;
-      color: #38bdf8;
+      color: var(--primary);
     }
 
     .filter-buttons {
-      margin: 30px auto;
+      margin: 30px auto 10px;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 15px;
+      padding: 0 15px;
     }
 
     .filter-buttons button {
-      background: #1e293b;
-      color: #38bdf8;
-      border: 2px solid #38bdf8;
+      background: var(--card-bg);
+      color: var(--primary);
+      border: 2px solid var(--primary);
       padding: 10px 22px;
       border-radius: 8px;
       font-weight: bold;
@@ -41,16 +54,16 @@
 
     .filter-buttons button:hover,
     .filter-buttons button.active {
-      background: #38bdf8;
-      color: #0f172a;
-      box-shadow: 0 0 15px #38bdf8;
+      background: var(--primary);
+      color: var(--bg);
+      box-shadow: 0 0 15px var(--primary);
     }
 
     .gallery {
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
       padding: 20px;
     }
@@ -60,6 +73,7 @@
       position: relative;
       overflow: hidden;
       border-radius: 15px;
+      background: #000;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
       transform: translateY(20px);
       opacity: 0;
@@ -76,7 +90,6 @@
       width: 100%;
       height: 200px;
       object-fit: cover;
-      display: block;
       transition: 0.4s ease;
     }
 
@@ -106,18 +119,16 @@
       padding: 5px 10px;
       border-radius: 6px;
       font-weight: bold;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
     }
 
     .sponsor-container {
       display: none;
-      margin-top: 0;
-      padding-top: 10px;
+      padding: 10px 20px;
     }
 
     .sponsor-title, .media-title {
       font-size: 0.9rem;
-      color: #94a3b8;
+      color: var(--muted);
       margin: 10px 0 5px;
       opacity: 0.6;
     }
@@ -145,10 +156,9 @@
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-      color: #0f172a;
+      background: linear-gradient(135deg, var(--primary), #0ea5e9);
+      color: var(--bg);
       padding: 12px 22px;
-      border: none;
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
@@ -172,7 +182,30 @@
       fill: currentColor;
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 768px) {
+      .card img {
+        height: 180px;
+      }
+
+      .caption {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .filter-buttons button {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+      }
+
+      .card img {
+        height: 160px;
+      }
+
       .floating-back-link {
         font-size: 0.8rem;
         padding: 10px 18px;
@@ -182,6 +215,11 @@
         width: 16px;
         height: 16px;
       }
+
+      .sponsor-logos img,
+      .media-logos img {
+        height: 30px;
+      }
     }
   </style>
 </head>
@@ -189,12 +227,14 @@
 
   <h1>Galeri Kegiatan</h1>
 
+  <!-- Tombol Filter -->
   <div class="filter-buttons">
     <button class="filter-btn" data-year="2023">2023</button>
     <button class="filter-btn" data-year="2024">2024</button>
     <button class="filter-btn" data-year="2025">2025</button>
   </div>
 
+  <!-- Galeri -->
   <div class="gallery">
     <!-- Galeri 2023 -->
     <div class="card" data-year="2023">
@@ -274,7 +314,7 @@
         <div class="card" data-year="2025">
       <img src="img/img/20256.jpg" alt="Kegiatan 2025" />
       <div class="date-tag">12 Juni 2025</div>
-      <div class="caption">Memasang Bendara Untuk Hut DKI Jakarta</div>
+      <div class="caption">Memasang Bendera Untuk Hut DKI Jakarta</div>
     </div>
     <div class="card" data-year="2025">
       <img src="img/img/20252.jpg" alt="Kegiatan 2025" />
@@ -298,7 +338,8 @@
     </div>
   </div>
 
-  <!-- Sponsor dan Media Partner -->
+
+  <!-- Sponsor -->
   <div class="sponsor-container" id="sponsor2024">
     <div class="sponsor-title">SPONSOR</div>
     <div class="sponsor-logos">
@@ -316,7 +357,7 @@
     </div>
   </div>
 
-  <!-- Tombol kembali -->
+  <!-- Tombol Kembali -->
   <a href="index.html" class="floating-back-link">
     <svg viewBox="0 0 24 24">
       <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -338,7 +379,6 @@
           setTimeout(() => card.classList.add('show'), 10);
         }
       });
-
       sponsor2024.style.display = (year === "2024") ? 'block' : 'none';
     }
 
